@@ -52,7 +52,7 @@ def mult(x,y):
     
     return res
 
-def main()
+def main():
     A=[]
     B=[]
     print("Введите A")
