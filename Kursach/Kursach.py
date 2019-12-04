@@ -14,26 +14,27 @@ def printf(v):
     print()
 
 def mult(x,y):
-    arr=[[],[3]]
+    arr=[[9],[3]]
+    count=-2
 
-    for i in range(len(x)*len(y)):
-        arr[i].append(0)
-    
-    arr[0][0]=0
-    arr[1][0]=1
-    print(arr[0][0])
-    print(arr[1][0])
-
-"""
     for i in range(3):
         print("i",i)
         for j in range(0,len(x),2):
             print("j",j)
-            #arr[i+j][0]=x[j]
+            count+=1
+            arr[count][0]=4
+            #x[j]
             for k in range(0,len(y),2):
                 print("k",k)
-               # arr[i+j][1]=y[k]
-                #arr[i+j][2]=x[j+1]*y[k+1]"""
+                print("count", count)
+               # print(y[0])
+               # print(y[1])
+                #print(y[2])
+                #print(y[3])
+                #print(y[4])
+                #print(y[5])
+                #arr[count][1]=y[k]
+                #arr[count][2]=x[j+1]*y[k+1]
     
    
 
