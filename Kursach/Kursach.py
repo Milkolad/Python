@@ -1,5 +1,4 @@
 import numpy as np
-import collections, numpy
 
 
 def scan(s,v):
@@ -30,8 +29,6 @@ def mult(x,y):
             count+=1
     print(arr,"\n")
     
-    #arrmin=arr.reshape(arr.shape[:,0]+[:,1])).min(axis=0)
-    #arr[:,1]=min(arr[:,0],arr[:,1])
     for i in range(lenght):
         arr[i,1]=min(arr[i,0],arr[i,1])
     
@@ -39,28 +36,24 @@ def mult(x,y):
     arr=arr[:,1:3]
     print(arr)
 
-    #for i in range(lenght-1):
-       # if (arr[i][1]==arr[i][1]): arr[i][1]=max(arr[i][1], arr[i+1][1]) ; #del arr[i:,]
-    print(collections.Counter(arr[:,1]))
-
     res=[]
     myiter=iter(range(lenght))
     for i in myiter:
         if((np.count_nonzero(arr==arr[i][1]))==1): res.append(arr[i][0]); res.append(arr[i][1])
         else: 
-                maximum=arr[i][1]
-                for j in range(np.count_nonzero(arr==arr[i][1])):
-                    maximum=max(arr[i][1],maximum)
-                    next(myiter,None)
+                maximum=arr[i][0]
+                for j in range(np.count_nonzero(arr==arr[i][1])-1):
+                    print(i)
+                    print(arr[i][0])
+                    maximum=max(arr[i][0],maximum)
+                    i=next(myiter,None)
                 res.append(maximum)
                 res.append(arr[i-1][1])
     
     return res
 
     
-    #print(np.where(arr=="12"))
-    #print(arr)
-    
+ 
    
 
 
