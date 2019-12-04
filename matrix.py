@@ -32,13 +32,4 @@ else:
    
         print()
     
-print("\n Проверка: \n", ma*mb)
-        
-        
-  
- 
-
-
-     
-    
-    
+print("\n Проверка: \n", ma*mb) 
