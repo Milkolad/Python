@@ -52,28 +52,21 @@ def mult(x,y):
     
     return res
 
-    
- 
-   
-
-
-
-
-A=[]
-B=[]
-print("Введите A")
-#string=input()
-string="0.7/2+1/3+0.6/4"
-scan(string, A)
-#print(A)
-printf(A)
-print("Введите B")
-#string=input()
-string="0.8/3+1/4+0.5/6"
-scan(string, B)
-printf(B)
-A=list(map(float,A))
-B=list(map(float,B))
-C=mult(A,B)
-C=list(map(str,C))
-printf(C)
+def main()
+    A=[]
+    B=[]
+    print("Введите A")
+    #string=input()
+    string="0.7/2+1/3+0.6/4"
+    scan(string, A)
+    printf(A)
+    print("Введите B")
+    #string=input()
+    string="0.8/3+1/4+0.5/6"
+    scan(string, B)
+    printf(B)
+    A=list(map(float,A))
+    B=list(map(float,B))
+    C=mult(A,B)
+    C=list(map(str,C))
+    printf(C)
