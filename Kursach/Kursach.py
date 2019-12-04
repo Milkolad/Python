@@ -24,7 +24,7 @@ def mult(x,y):
         for j in range(0,len(y),2):
             arr[count][0]=x[i]
             arr[count][1]=y[j]
-            arr[count][2]=x[i+1]*y[j+1]
+            arr[count][2]=x[i+1]+y[j+1]
             count+=1
     
     for i in range(lenght):
@@ -38,9 +38,9 @@ def mult(x,y):
         if((np.count_nonzero(arr==arr[i][1]))==1): res.append(arr[i][0]); res.append(arr[i][1])
         else: 
             maximum=arr[i][0]
-            for j in range(np.count_nonzero(arr==arr[i][1])-1):
+            for j in range(np.count_nonzero(arr==arr[i][1])):
                 maximum=max(arr[i][0],maximum)
-                i=next(myiter,None)
+                if(j!=np.count_nonzero(arr==arr[i][1])-1): i=next(myiter,None)
             res.append(maximum)
             res.append(arr[i-1][1])
     
@@ -51,12 +51,16 @@ def main():
     B=[]
     print("Введите A")
     #string=input()
-    string="0.7/2+1/3+0.6/4"
+    #string="0.7/2+1/3+0.6/4"
+    #string="0.1/2+0.5/3"
+    string="0.2/2+0.3/1+0.6/3+0.2/4"
     scan(string, A)
     printf(A)
     print("Введите B")
     #string=input()
-    string="0.8/3+1/4+0.5/6"
+    #string="1/4+0.3/2"
+    #string="0.8/3+1/4+0.5/6"
+    string="0.1/5+1/1+0.5/2+0.6/4"
     scan(string, B)
     printf(B)
     A=list(map(float,A))
