@@ -16,7 +16,6 @@ def printf(v):
     print()
 
 def mult(x,y):
-
     lenght=(len(x)*len(y))//4
     arr=np.zeros((lenght,3), dtype=float)
     count=0
