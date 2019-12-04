@@ -24,7 +24,7 @@ def mult(x,y):
         for j in range(0,len(y),2):
             arr[count][0]=x[i]
             arr[count][1]=y[j]
-            arr[count][2]=x[i+1]+y[j+1]
+            arr[count][2]=x[i+1]*y[j+1]
             count+=1
     
     for i in range(lenght):
