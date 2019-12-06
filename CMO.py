@@ -1,6 +1,5 @@
 from queue import Queue
 from threading import Thread
-import asyncio
 import time
 import random
 
@@ -75,21 +74,14 @@ def quedev(qd,deliver,cust):
     if (not(qd.empty())): print(deliver.collect()); print(deliver.dev()); print(cust.leave())
 
 
-
-'''def people():
-    for i in range(1,4):
-        cu=Customer(i) 
-        print(cust.come())
-        cust.order(qc)'''
-
 cass=Queue()
 deliv=Queue()
 b=Cashier(cass)
 c=Delivery(deliv)
-length=3
+length=30
 
 
-for i in range(1,length):
+for i in range(1,length+1):
     cu=Customer(i) 
     thr1=Thread(target=quecass, args=(cu,cass,deliv,b,c))
     thr2=Thread(target=quedev, args=(deliv,c,cu))
@@ -101,7 +93,7 @@ for i in range(1,length):
    
 #костыль
 if(not(deliv.empty())):
-    cus=Customer(length-1)
+    cus=Customer(length)
     thr2=Thread(target=quedev, args=(deliv,c,cus))
     thr2.start()
     thr2.join()
