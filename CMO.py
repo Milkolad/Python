@@ -1,5 +1,6 @@
 from queue import Queue
 from threading import Thread
+import asyncio
 import time
 import random
 
@@ -13,7 +14,7 @@ class Customer(object):
         return "Покупатель %s пришел" % self.number 
     
     def leave(self):
-        return "Покупатель %s ушел" % self.number
+        return "Покупатель ушел" 
 
     def order(self,q):
         if(not(q.empty())): print("Покупатель",self.number,"встает в очередь"); 
@@ -56,7 +57,7 @@ class Delivery(object):
         self.q=q
 
     def collect(self):
-        return "Сбор заказа" 
+        return "Сбор заказа"  
 
     def dev(self):
         amount = random.randint(5, 10)
@@ -64,29 +65,43 @@ class Delivery(object):
         return "Выдача заказа %s покупателю"% self.q.get()
 
 
-def que(number,qc,qd,cash,deliver):
-    cust=Customer(number)
+def quecass(cust,qc,qd,cash,deliver):
     print(cust.come())
     if(qc.empty()):print(cash.shout())
     cust.order(qc)
-    if(not(qc.empty())): print(cash.service(number)); print(cash.servcomplete()); print(cust.wait(qd))
-    if(not(qd.empty())): print(deliver.collect()); print(deliver.dev()); print(cust.leave())
+    if(not(qc.empty())): print(cash.service(cust.number)); print(cash.servcomplete()); print(cust.wait(qd)); 
+   
+def quedev(qd,deliver,cust):
+    if (not(qd.empty())): print(deliver.collect()); print(deliver.dev()); print(cust.leave())
 
+
+
+'''def people():
+    for i in range(1,4):
+        cu=Customer(i) 
+        print(cust.come())
+        cust.order(qc)'''
 
 cass=Queue()
 deliv=Queue()
 b=Cashier(cass)
 c=Delivery(deliv)
-thr1=Thread(target=que, args=(1,cass,deliv,b,c))
-thr2=Thread(target=que, args=(2,cass,deliv,b,c))
+length=3
 
 
-thr1.start()
-time.sleep(2)
-thr2.start()
-thr1.join()
-thr2.join()
-#for i in range(1,3):
-    #thr1=Thread(target=que, args=(i,cass,deliv,b,c))
-  #  thr[i-1].start()
-  #  thr[i-1].join()
+for i in range(1,length):
+    cu=Customer(i) 
+    thr1=Thread(target=quecass, args=(cu,cass,deliv,b,c))
+    thr2=Thread(target=quedev, args=(deliv,c,cu))
+    thr1.start()
+    thr2.start()
+    thr1.join()
+    thr2.join()
+    time.sleep(2)
+   
+#костыль
+if(not(deliv.empty())):
+    cus=Customer(length-1)
+    thr2=Thread(target=quedev, args=(deliv,c,cus))
+    thr2.start()
+    thr2.join()
