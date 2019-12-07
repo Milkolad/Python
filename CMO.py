@@ -67,20 +67,18 @@ class Delivery(object):
         time.sleep(amount)
         cu=self.q.get()
         cust=Customer(cu)
-        print("Выдача заказа,покупателю", cu)
+        print("Выдача заказа покупателю", cu)
         print(cust.leave())
         
         
 def quecass(qc,qd,cash,deliver):
+    if(qc.empty()):print(cash.shout()); time.sleep(0.2)
     while(not(qc.empty())):
-        if(qc.empty()):print(cash.shout())
         if(not(qc.empty())): cash.service(); cash.servcomplete(qd) 
    
 def quedev(qc, qd,deliver):
     time.sleep(0.1)
     while((not(qc.empty()))|(not(qd.empty()))):
-        #print(not(cass.empty()))
-        #print(not(deliv.empty()))
         if (not(qd.empty())): print(deliver.collect()); deliver.dev()
 
 def people(qc,lenght):
@@ -99,16 +97,15 @@ def main():
     c=Delivery(deliv)
     lenght=4 #длина очереди
 
-
+    print("Добро пожаловать в McDonald's!")
     thr1=Thread(target=quecass, args=(cass,deliv,b,c))
     thr2=Thread(target=quedev, args=(cass, deliv,c))
     thr3=Thread(target=people, args=(cass,lenght))
-    thr3.start()
-    time.sleep(0.2)
     thr1.start()
+    thr3.start()  
     thr2.start()
-    thr3.join()
     thr1.join()
+    thr3.join()
     thr2.join() 
 
 if __name__== '__main__':
