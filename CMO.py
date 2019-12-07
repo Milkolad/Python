@@ -77,6 +77,7 @@ def quecass(qc,qd,cash,deliver):
         if(not(qc.empty())): cash.service(); cash.servcomplete(qd) 
    
 def quedev(qd,deliver):
+    time.sleep(0.1)
     while((not(cass.empty()))|(not(deliv.empty()))):
         #print(not(cass.empty()))
         #print(not(deliv.empty()))
@@ -106,6 +107,6 @@ thr3.start()
 time.sleep(0.2)
 thr1.start()
 thr2.start()
+thr3.join()
 thr1.join()
 thr2.join() 
-thr3.join()
