@@ -72,13 +72,13 @@ class Delivery(object):
         
         
 def quecass(qc,qd,cash,deliver):
-    while(not(cass.empty())):
+    while(not(qc.empty())):
         if(qc.empty()):print(cash.shout())
         if(not(qc.empty())): cash.service(); cash.servcomplete(qd) 
    
-def quedev(qd,deliver):
+def quedev(qc, qd,deliver):
     time.sleep(0.1)
-    while((not(cass.empty()))|(not(deliv.empty()))):
+    while((not(qc.empty()))|(not(qd.empty()))):
         #print(not(cass.empty()))
         #print(not(deliv.empty()))
         if (not(qd.empty())): print(deliver.collect()); deliver.dev()
@@ -92,21 +92,24 @@ def people(qc,lenght):
         time.sleep(amount)
 
 
+def main():
+    cass=Queue()
+    deliv=Queue()
+    b=Cashier(cass)
+    c=Delivery(deliv)
+    lenght=4 #длина очереди
 
-cass=Queue()
-deliv=Queue()
-b=Cashier(cass)
-c=Delivery(deliv)
-lenght=4 #длина очереди
 
+    thr1=Thread(target=quecass, args=(cass,deliv,b,c))
+    thr2=Thread(target=quedev, args=(cass, deliv,c))
+    thr3=Thread(target=people, args=(cass,lenght))
+    thr3.start()
+    time.sleep(0.2)
+    thr1.start()
+    thr2.start()
+    thr3.join()
+    thr1.join()
+    thr2.join() 
 
-thr1=Thread(target=quecass, args=(cass,deliv,b,c))
-thr2=Thread(target=quedev, args=(deliv,c))
-thr3=Thread(target=people, args=(cass,lenght))
-thr3.start()
-time.sleep(0.2)
-thr1.start()
-thr2.start()
-thr3.join()
-thr1.join()
-thr2.join() 
+if __name__== '__main__':
+   main()
