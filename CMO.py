@@ -1,8 +1,8 @@
 from queue import Queue
-from collections import deque
 from threading import Thread
 import time
 import random
+
 
 class Customer(object):
  
@@ -52,8 +52,6 @@ class Cashier(object):
         return q
 
 
-
-
 class Delivery(object):
 
     def __init__(self, q):
@@ -75,11 +73,13 @@ def quecass(qc,qd,cash,deliver):
     if(qc.empty()):print(cash.shout()); time.sleep(0.2)
     while(not(qc.empty())):
         if(not(qc.empty())): cash.service(); cash.servcomplete(qd) 
-   
+
+
 def quedev(qc, qd,deliver):
     time.sleep(0.1)
     while((not(qc.empty()))|(not(qd.empty()))):
         if (not(qd.empty())): print(deliver.collect()); deliver.dev()
+
 
 def people(qc,lenght):
     for i in range(1,lenght+1):
@@ -107,6 +107,7 @@ def main():
     thr1.join()
     thr3.join()
     thr2.join() 
+
 
 if __name__== '__main__':
    main()
